@@ -1,23 +1,28 @@
-import logo from './logo.svg';
+import { render } from "react-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+} from "react-router-dom";
 import './App.css';
+import Home from "./Components/Home/Home";
+import Nomatch from "./Components/Nomatch/Nomatch";
+import Team from "./Components/Team/Team";
+import Teamdetails from "./Components/Teamdetails/Teamdetails";
+import Teams from "./Components/Teams/Teams";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        <Routes>
+            <Route path='/home' element={<Home />} />
+            {/* <Route path="/home" element={<Teams />}> */}
+            <Route path={"/teamid/:teamId"} element={<Teamdetails/>} />
+            <Route path='/' element={<Home />} />
+            <Route path="*" element={<Nomatch />} />
+        </Routes>
+  </Router>
     </div>
   );
 }
